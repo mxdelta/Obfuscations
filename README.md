@@ -1,5 +1,6 @@
 # Obfuscations
 
+
 # Обход блокировка скрипта
 
 Set-ExecutionPolicy Bypass -Scope CurrentUser -Force
