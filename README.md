@@ -28,7 +28,9 @@ exit
         
         sudo pwsh Invoke-Stealth.ps1 H4sploit.ps1 -technique All
 
+# А еще можно попробовать поработать вот с этим
 
+https://github.com/t3l3machus/Villain
 
 # Была рабочая
 
