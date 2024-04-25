@@ -30,7 +30,7 @@ exit
 
 
 
-
+# Была рабочая
 
 need python2 pip2
 
