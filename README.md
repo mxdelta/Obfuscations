@@ -26,7 +26,7 @@ exit
 
         https://github.com/JoelGMSec/Invoke-Stealth.git
         
-        sudo pwsh Invoke-Stealth.ps1 H4sploit.ps1 -technique All
+        sudo pwsh Invoke-Stealth.ps1 ./H4sploit.ps1 -technique All
 
 # А еще можно попробовать поработать вот с этим
 
