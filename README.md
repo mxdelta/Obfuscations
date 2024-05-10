@@ -18,6 +18,9 @@ Get-Host
 exit
 
 # Пока что рабочая обфускация
+
+          https://www.youtube.com/watch?v=HFtvuz-9phI&t=84s
+        
         - установить реверс
 
         https://github.com/H4cksploit/powershell-reverse-shell-one-liner/blob/main/powershell%20reverse%20shell%20one-liner.ps1
