@@ -1,5 +1,8 @@
 # Obfuscations
+        
+# APP_LOCKER
 
+          Get-AppLockerPolicy -Effective -Xml   ----> copy to file.xml ---> firefox file.xml
 
 # Обход блокировка скрипта
 
