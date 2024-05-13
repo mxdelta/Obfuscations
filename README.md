@@ -471,6 +471,9 @@ $session.SetValue($null,$null);
 
 
 # Open-Source Software Obfuscation
+
+https://gchq.github.io/CyberChef/#recipe=Gzip('Dynamic%20Huffman%20Coding','','',false)To_Base64('A-Za-z0-9%2B/%3D')
+
 function Invoke-Seatbelt {
     [CmdletBinding()]
     Param (
