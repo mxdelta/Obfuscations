@@ -6,6 +6,9 @@
 
 # Обход App_Locker rundll32.exe
 
+IN VC ---->        Class Library (.NET Framework) ---->   Project > Manage NuGet Packages... ---->Then, inside the NuGet Package Manager, click on the Settings (gear) icon: ---->![image](https://github.com/mxdelta/Obfuscations/assets/121447514/bd2e8a55-ce30-4e1e-af88-63ad92def287)
+
+
         C:\Windows\System32\RunDll32.exe C:\Tools\RShell_D\RShell_D\bin\Release\x86\RShell_D.dll,DllMain
 
 # Обход блокировка скрипта
