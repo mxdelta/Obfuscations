@@ -1,5 +1,12 @@
 # Obfuscations
-        
+
+
+
+# obfuscation reverse shell
+
+https://github.com/antonioCoco/ConPtyShell/tree/master
+(надо убрать коментарии, заменить название функции на max и заменить ConPtyShell на max)
+
 # APP_LOCKER
 
           Get-AppLockerPolicy -Effective -Xml   ----> copy to file.xml ---> firefox file.xml
