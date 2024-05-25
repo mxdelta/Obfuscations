@@ -371,15 +371,15 @@ nc -nlvp 9001
 
 
 
-using System;
-using System.IO;
-using System.Net.Sockets;
-using System.Diagnostics;
+          using System;
+          using System.IO;
+          using System.Net.Sockets;
+          using System.Diagnostics;
 
-namespace RShell
-{
-    internal class Program
-    {
+          namespace RShell
+          {
+              internal class Program
+              {
         private static StreamWriter streamWriter; // Needs to be global so that HandleDataReceived() can access it
 
         static void Main(string[] args)
