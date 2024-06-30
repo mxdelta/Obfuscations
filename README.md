@@ -3,6 +3,9 @@
 # Правила брандмауэра 
 
 powershell Get-NetFirewallRule -PolicyStore ActiveStore
+                    ---------------- выбрать action равно block
+powershell Get-NetFirewallRule -PolicyStore ActiveStore | where {$_.Action -eq "Block"}
+
 
 # obfuscation reverse shell
 
