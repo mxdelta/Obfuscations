@@ -7,6 +7,7 @@ powershell Get-NetFirewallRule -PolicyStore ActiveStore
                     ---------------- выбрать action равно block
 powershell Get-NetFirewallRule -PolicyStore ActiveStore | where {$_.Action -eq "Block"}
 
+Get-NetFirewallRule -PolicyStore ActiveStore | where {$_.Action -eq "Block"} | Select DisplayName
 
 # obfuscation reverse shell
 
