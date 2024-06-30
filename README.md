@@ -11,7 +11,7 @@ powershell Get-NetFirewallRule -PolicyStore ActiveStore | where {$_.Action -eq "
 
 Get-NetFirewallRule -PolicyStore ActiveStore | where {$_.Action -eq "Block"} | Select DisplayName
 
-                  --------------------Посмотреть что за скрипт скрывается за специальным ID брандмауэра
+                  --------------------Посмотреть что за скрипт и по какому пути скрывается за специальным ID брандмауэра
 
 Get-NetFirewallRule -PolicyStore ActiveStore -Name "{D7871DF0-F71B-4BD0-B7DE-F8E6966A3640}" | Get-NetFirewallApplicationFilter
 
