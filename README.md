@@ -7,7 +7,14 @@ powershell Get-NetFirewallRule -PolicyStore ActiveStore
                     ---------------- выбрать action равно block
 powershell Get-NetFirewallRule -PolicyStore ActiveStore | where {$_.Action -eq "Block"}
 
+                    ----------------- выбрать action равно block и показать имя программы
+
 Get-NetFirewallRule -PolicyStore ActiveStore | where {$_.Action -eq "Block"} | Select DisplayName
+
+                  --------------------Посмотреть что за скрипт скрывается за специальным ID брандмауэра
+
+Get-NetFirewallRule -PolicyStore ActiveStore -Name "{D7871DF0-F71B-4BD0-B7DE-F8E6966A3640}" | Get-NetFirewallApplicationFilter
+
 
 # obfuscation reverse shell
 
