@@ -1,6 +1,8 @@
 # Obfuscations
 
+# Правила брандмауэра 
 
+powershell Get-NetFirewallRule -PolicyStore ActiveStore
 
 # obfuscation reverse shell
 
