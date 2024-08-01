@@ -21,6 +21,16 @@ Get-NetFirewallRule -PolicyStore ActiveStore -Name "{D7871DF0-F71B-4BD0-B7DE-F8E
 https://github.com/antonioCoco/ConPtyShell/tree/master
 (надо убрать коментарии, заменить название функции на max и заменить ConPtyShell на max)
 
+# Обход ограничений powershell (Легкий)
+
+powershell -NoP -NonI -W Hidden -Exec Bypass -enc "[EncodedCommand]"
+-NoP – (-NoProfile) – не загружает профиль Windows PowerShell.)
+–NonI - (-неинтерактивный) – не предоставляет пользователю интерактивное приглашение.
+-W Hidden (-WindowStyle) – устанавливает обычный, свернутый, развернутый или скрытый стиль окна.
+-Exec Bypass (-ExecutionPolicy) – устанавливает политику выполнения по умолчанию для текущего сеанса и сохраняет ее в переменной среды $env: PSExecutionPolicyPreference . Этот параметр не изменяет политику выполнения Windows PowerShell, установленную в реестре.
+-Enc (-EncodedCommand) – принимает строковую версию команды в кодировке base-64. Используйте этот параметр для отправки команд в Windows PowerShell, для которых требуются сложные кавычки или фигурные скобки.
+
+
 # APP_LOCKER
 
           Get-AppLockerPolicy -Effective -Xml   ----> copy to file.xml ---> firefox file.xml
