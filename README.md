@@ -3,6 +3,8 @@
 
       Get-WinEvent -LogName "Microsoft-Windows-windows Defender/Operational" -FilterXPath "*[System[(EventID=5007)]]" | where-object {$_.Message -like "*exclusions\path*"}| Select-Object Message | FL
 
+      https://github.com/Friends-Security/SharpExclusionFinder
+      
       https://blog.fndsec.net/2024/10/04/uncovering-exclusion-paths-in-microsoft-defender-a-security-research-insight/
 
 # Правила брандмауэра 
