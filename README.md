@@ -1,4 +1,9 @@
 # Obfuscations
+
+# Каталоги для обхода груповых политик
+      
+      https://github.com/api0cradle/UltimateAppLockerByPassList
+
 # Проверка исключений каталогов defenderom
 
       Get-WinEvent -LogName "Microsoft-Windows-windows Defender/Operational" -FilterXPath "*[System[(EventID=5007)]]" | where-object {$_.Message -like "*exclusions\path*"}| Select-Object Message | FL
