@@ -71,6 +71,8 @@ PowerShell.exe –version 2.0
 Get-Host
 
 exit
+# Еще один рабочий реверс шелл 
+      https://gist.github.com/BankSecurity/55faad0d0c4259c623147db79b2a83cc
 
 # Пока что рабочая обфускация
 
