@@ -527,7 +527,7 @@ $session.SetValue($null,$null);
 
 
 
-# Open-Source Software Obfuscation
+# Open-Source Software Obfuscation для PS1
 
 Обфускаатор на cybercheff
 
