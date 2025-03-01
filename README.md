@@ -490,6 +490,8 @@ nc -nlvp 9001
 
 # AMSI EVASION
 
+https://en.r-tec.net/r-tec-blog-bypass-amsi-in-2025.html
+
 1----------
 
 Add-Type -TypeDefinition @"
